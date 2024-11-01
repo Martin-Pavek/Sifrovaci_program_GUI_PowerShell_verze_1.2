@@ -1,0 +1,88 @@
+31.10.2024
+
+tato verze programu 1.2 se od predchozi verze 1.1 lisi pouze ve velikosti souboru klice
+namisto velikosti klice 62x126 znaku je zde pouzito pole o rozmerech 256x126 znaku
+to znamena cca. 4x vetsi plocha nez ve verzi predchozi ktera mela 7812 aktivnich poli
+a zde je rozsireni na 32130 poli, samozdejme nelze v teto nove verzi 1.2 pouzivat stary
+soubor klice z verze 1.1, vse potrebne pro generovani novych klicu je prilozeno, vcetne
+programu keys_viev.exe, ktery najde v adresari "doplnky\keys_view\"
+v tomto programu (keys_view) je nastavena relativni cesta do adresare "keys\" to znamena
+ze paklize budete utilitu keys_view.exe spoustet z umisteni kde se nachazi ted bude fungovat
+a zepta se pouze na nazev klice ktery chcete zobrazit, paklize budte program nekam premistovat
+je mu potreba upravit radky 5 a nebo 6 podle aktualni situace, radek 5 primej odkaz tzn. z korenoveho
+adresare k cili, nebo radek 6 relativni odkaz napr. o dva adresare zpatky a pak do adresare keys
+jako je tam nasteveno tedko, zatim tedy takto, mozna v budoucnu jeste poresim k lepsi
+uzivatelske privetivosti
+
+doporucuji se podivat na obrazek "\doplnky\keys_view\novy_klic_1.jpg" ve verzi 1.2
+a porovnat ho z obrazkem "\doplnky\keys_view\jpg\view key autoruv-klic-cislo-1.jpg" z verze programu 1.1
+je zde vydet podstatni narust ve velikosti plochy klice cca 4x vetsi plocha nez stary klic
+vsechny moje testy klicu a doporuceni z verze 1.1 se tedy daji tedko v podstate nasobit/delit cislem 4
+pouziti klice ve verzi 1.1 jsem doporucoval 20-30x, tady nove tedy 80-120x
+muj napad z pouzitim tydeniho klice nepavazuji za dokanaly, ono prece jenom mit v adresari 106
+souboru klicu a hledat v tom pak neco... ted nove mohu doporucit pouziti "mesicniho klice"
+24 souboru v adresari nacely rok uz nebude pusobit vetsi zmatek
+dale, vsechny moje testy v adresarich "verze_1.1\doplnky\testovani_hesla" se v podstate
+daji vsechny vysledky zjednodusene naopak zse vydelit cislem 4
+napr. kdyz drive bylo 50% pri 35 pouzitich stejneho klice tak ted bych to odhadoval na 
+nejakych cca. 13% apod.
+
+program ve verzi 1.2 jiz nepouziva prazne klice na zacatku matice jako ve verzi 1.1
+kde to bylo vzdy prvnich 9 klicu prazdnych ([x][0] az [x][9]) na kazdem radku, takze tady jsou
+jiz zaplnene vsechny prvky matice az je to uspora pameti pocitace a zviseni rychlosti behu programu
+
+do archivu old-1.2.zip, jsem podobne jako v mynule verzi zapakoval vsechnu drobotinu 
+ktera vznikla pri psani teto nove verze, zaroven muze poslouzit i jako testovacio archiv na
+otestovani funci programu
+hodne toho bylo popsano, screenshotovano jiz ve verzi 1.1 takze odkazuji sem, neni potreba
+vse znovu opakovat, omezuji se jen na to dulezite a rozdilne
+
+v souboru "PS2EXE_novejsi_verze\Module\compile.bat" je vydet par parametru ktere byli pouzity
+pri kompilaci zdrojovych souboru do souboru *.com, *.exe
+byl pouzit parametr -x86 (compile for 32-bit runtime only) a parametr -STA (Single Thread Apartment mode)
+to z duvodu co nejsirsi pouzitelnosti treba i na starsich pocitacich
+sami si zrojove soubory muzete zkusit prekompilovat s paremetry -x64 (compile for 64-bit runtime only)
+a z parametrem -MTA (Multi Thread Apartment mode) a uvidite jestli se rychlost programu zlepsi nebo ne
+v souboru "PS2EXE_novejsi_verze\Module\ps2exe.ps1" je na zacatku seznam vsech parametru ktere se daji
+pouzit, takze kdo chce si muze pohrat, jinak soubor Win-PS2EXE.exe v temze adresari sjem nepouzival
+a mam pocit ze nefunguje viz jeden screenshot v adresari jpg/
+postup kompilce uz byl popsan v predchzi verzi 1.1 zde opet v adresari \jpg\prace v ps2exe\
+par screenhotu jiz z drivejska, takze postup stejny, jenom zde opet pripominam ze je potreba otevrit
+soubor "ps2exe.ps1" v editoru Powershell ISE, nasledne program spustit (klavesa F5)
+aby se do prostredi nacetli vsechny potrebne promenne a funkce
+potom v dolejsim okne "doskakat" pomoci beznych ms-dos prikazu jako je "dir" pro
+vypis obsahu aktualniho adresare nebo prikazu "cd FolderName" pro 
+prepnuti do zvoleneho adresare a nebo pomoci prikazu "cd.." pro vstup o adresar "nize"
+v pomyslne adresarove strukture az ke zdrojovim souboru "*.ps1" 
+paklize budu mit tato takto pripraveno staci uz pak treba dole v okne zadat
+"Invoke-ps2exe .\zobraz_tip.ps1 .\zobraz_tip.com" a sputi se z pameti pocitace funkce ktera
+zajisti prevod do samospustitelneho souboru z priponou "com" nebo "exe"
+,uvahy na tema "com" vs "exe" byli jiz take probirani v predchozich verzich a kdyz ne tam
+tak nekde tady v nejakem jinem repozitari urcite
+
+nove program zasifruj.exe a desifruj.exe a vlastne ani program generuj_klic.com
+pri svem behu nevypisuje zadne zbytecne radky typy $matrix[0][0]="A" apod.
+ve verzi 1.1 to mozna byl zajimavy efekt ale tady kde je 4x vetsi mnozstvi dat by toto jiz neumerne 
+zdrzovalo, on vlastne kazdy prikaz "echo" tedy vystup na obrazovku trva nejdele ze vseho
+a nejrychlejsi je vzdy to co probiha na pozadi a skryte a o cem uzivatel nevi a dozvi se
+napr. az konecny vysledek, toto plati obecne a platilo to vzdy, takze zde jiz zadne 
+"zbytecne" vypisy, nove pribyla "ikona klice" jsem to nazval
+muzete nyni vydet napr. toto, viz tez screeenshoty v adresri "jpg/"
+
+5 . . . . . s
+. . . . . . .
+. . . . . . .
+R . . . . . I
+
+slouzi to pro kontolu za se soubor klice v poradku nacetl a vlasne i jako zjednodusene
+graficke vyjadreni obsahu klice, samozdrejme ze tento "obrazek" bude pri pouziti ruznych klicu
+vzdy jini, takze pismeno "5" levy horni roh znaci hodnotu promenne $matrix[0][0]="5" (pro konkretni klic)
+dale pak na prvnim radku posledni pismeno "s" znaci hodnotu v poly $martix[0][255]="s"
+posledni radek "R" a "I" jsou pak hodnoty [125][0] a [125][255]
+
+do programu jsem zabudoval jeden easter egg (velikonocni vajicko), vytvorte
+si klic z nazvem "dexovo" a nebo "fery" a sledujte co se stene pri jeho pouzivani
+
+na programu bude jeste dale pracovat,doladovat ho atd. takze urcite budou jeste aktualizace
+takto prozatim vse
+
