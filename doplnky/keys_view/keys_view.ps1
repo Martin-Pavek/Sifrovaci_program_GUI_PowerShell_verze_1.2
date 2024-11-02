@@ -78,6 +78,7 @@ $pole_out+="keys view v1.2 - $volba_klice"
 #echo ""
 $pole_out+=""
 
+<# puvodni
 $h0 = "     0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
 $h1 = "     0000000000111111111122222222223333333333444444444455555555556666666666777777777788888888889999999999"
 $h2 = "     0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"
@@ -90,13 +91,19 @@ $h0 += "22222222222222222222222222222222222222222222222222222222"
 $h1 += "00000000001111111111222222222233333333334444444444555555"
 $h2 += "01234567890123456789012345678901234567890123456789012345"
 $h3 += "||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
-#         zatim takto ^^^ pozdeji mozna jinak
-<# neveslo se vodorovne na obrazovku (zalamovany radky uz) 
-echo $h0
-echo $h1
-echo $h2
-echo $h3
 #>
+
+# 2.11.2024 - nove cislovani radku, ne uz otrocke opisovani vseho ( stary 2kb, novy 1Kb )
+$h0="     "; $h1=$h0; $h2=$h0; $h3=$h0
+for ( $i1 = 1; $i1 -le 100; $i1++ ) { $h0+="0" } for ( $i1b = 1; $i1b -le 100; $i1b++ ) { $h0+="1" } for ( $i2 = 1; $i2 -le 56; $i2++ ) { $h0+="2" }
+
+for ( $i3 = 1; $i3 -le 2; $i3++ ) { for ( $i4 = 0; $i4 -le 9; $i4++ ) { for ( $i5 = 1; $i5 -le 10; $i5++ ) { $h1+=[string]$i4 }}}
+for ( $i6 = 0; $i6 -le 4; $i6++ ) { for ( $i7 = 1; $i7 -le 10; $i7++ ) { $h1+=[string]$i6 }}; $h1+="555555"
+
+for ( $i7 = 1; $i7 -le 25; $i7++ ) { for ( $i8 = 0; $i8 -le 9; $i8++ ) { $h2+=[string]$i8 }}; $h2+="012345"
+
+for ( $i9 = 1; $i9 -le 256; $i9++ ) { $h3+="|" }
+# konec 2.11.2024
 
 $pole_out+=$h0
 $pole_out+=$h1
@@ -131,27 +138,16 @@ $jeden_radek+="--"
 $poc_1++
 }
 
-<#
-echo $h3
-echo $h0
-echo $h1
-echo $h2
-#>
-
 $pole_out+=$h3
 $pole_out+=$h0
 $pole_out+=$h1
 $pole_out+=$h2
 
-#echo ""
-# ulozeni vystupu do souboru
+# ulozeni vystupu do souboru *.txt
 echo "ulozeno do souboru:"
 $out_file_name="keys_view-"+$volba_klice+".txt"
 Write-host -ForegroundColor Cyan $out_file_name
 
 Set-Content -Path $out_file_name -Encoding ASCII -Value $pole_out
-
-# ceka v pauze na ukonceni
-sleep 10
-
+sleep 5
 
