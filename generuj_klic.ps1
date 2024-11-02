@@ -130,18 +130,33 @@ $poc++
 
 $stream_writer_1.close()
 
-<#
-$poc--
-echo $poc
+# kontrola nacteni klice
+# spocita delku krajnich klicu nacteneho matrixu
+$kraje_matrix=0
+$kraje_matrix+=$matrix[0][0].Length
+$kraje_matrix+=$matrix[0][255].Length
+$kraje_matrix+=$matrix[125][0].Length
+$kraje_matrix+=$matrix[125][255].Length
+#echo $kraje_matrix
 
-$matrix[125][71]
-#$matrix[0][9]
-$matrix[0][10]
-#$matrix[0][7]
-$matrix[0][11]
-$matrix[125][10]
-#>
+#$kraje_matrix=1 test
+if ( $kraje_matrix -ne 4 ) { # musi bejt 4
+Write-Host -ForegroundColor Red "chyba pri nacitani klice"
+echo "konec programu"
+sleep 3
+exit 1
+}
 
+# levy horni roh, pravi horni roh, levy dolni roh a pravy dolni roh
+echo ""
+$hl_1=$matrix[0][0]+" . . . . . " + $matrix[0][255]
+echo $hl_1
+for ($i1 = 1; $i1 -le 2; $i1++){ 
+echo ". . . . . . ." 
+}
+$hl_2=$matrix[125][0]+" . . . . . "+$matrix[125][255]
+echo $hl_2
+echo ""
 
-#sleep 5
+sleep 3
 
