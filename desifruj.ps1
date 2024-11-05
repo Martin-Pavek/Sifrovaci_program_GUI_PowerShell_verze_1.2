@@ -29,8 +29,8 @@ $pole_tipy += "Tip 11: Autor nedoporucuje pouzivat diakritiku a nazvech klicu, a
 $pole_tipy += "Tip 12: Hromada veci jak program pracuje byla jiz popsana ve vezi 6.2 pro Linux"
 $pole_tipy += "Tip 13: Tato verze programu pro Windows vznikla hlavne z duvodu noveho grafickeho rozhrani a je velmi podobna verzi 6.2 pro Linux"
 $pole_tipy += "Tip 14: Tato verze programu jiz nepouziva zadavani nazvu adresaru ale pracuje z jiz predem vytorenymi a obsahem naplnenymy adresary"
-$pole_tipy += "Tip 15: Do adresare odkud byl spusten tento soubor vytvorte novy adresar, naplte ho vsim potrebnym a spuste program zasifruj.com"
-$pole_tipy += "Tip 16: Do adresare odkud byl spusten tento soubor presunte sifrovany archiv napr. z prilohy email a spuste program desifruj.com"
+$pole_tipy += "Tip 15: Do adresare odkud byl spusten tento soubor vytvorte novy adresar, naplte ho vsim potrebnym a spuste program zasifruj.exe"
+$pole_tipy += "Tip 16: Do adresare odkud byl spusten tento soubor presunte sifrovany archiv napr. z prilohy email a spuste program desifruj.exe"
 $pole_tipy += "Tip 17: Takto zlute se pri kazdem spusteni programu bude zobrazovat nahodny tip ktery vam pomuze z pouzivanim programu"
 $pole_tipy += "Tip 18: Zalohujte si slozku klicu tzn. adresar keys, prekopirovanim treba a flashdisk, vypalenim na cd-cko apod."
 $pole_tipy += "Tip 19: Pokud chcete nektery adresar zazipovat 2x ale pomoci dvou ruznych klicu prejmenujte nejprve prvne vytvoreny archiv zip"
@@ -316,7 +316,11 @@ $d_nalezene_heslo = $nalezene_heslo.Length
 # nalezeny nazev souboru klice v listu archivu zip
 $nalezeny_nazev_klice_v_listu_vybraneho_archivu_zip = $cmd_output[$radek_nalezeno + 5]
 #$nalezeny_datum_vytvoreni_archivu = $cmd_output[$radek_nalezeno + 7]
-echo "pri zazipovani by pouzit klic z nazvem: $nalezeny_nazev_klice_v_listu_vybraneho_archivu_zip"
+$out_11 = $nazev_adresare_klice # 4.11.2024
+$out_11 += "/"
+$out_11 += $nalezeny_nazev_klice_v_listu_vybraneho_archivu_zip
+#echo "pri zazipovani by pouzit klic z nazvem: $nazev_adresare_klice"/"$nalezeny_nazev_klice_v_listu_vybraneho_archivu_zip"
+echo "pri zazipovani by pouzit klic z nazvem: $out_11"
 ##############################################################################################
 # tady nove pridano nacte sha klice z filecommentu a porovna ho ze sha klice v adrsari keys
 ##############################################################################################
@@ -461,7 +465,7 @@ $poc=1
 $nacti_cestu_a_klic = $nazev_adresare_klice
 $nacti_cestu_a_klic += "/"
 $nacti_cestu_a_klic += $nalezeny_nazev_klice_v_listu_vybraneho_archivu_zip
-echo $nacti_cestu_a_klic
+# echo $nacti_cestu_a_klic presunuta vejs 04.11.2024
 
 $stream_reader_1 = [System.IO.StreamReader]::new($nacti_cestu_a_klic)
 
